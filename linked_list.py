@@ -126,17 +126,5 @@ class LinkedList:
             raise ValueError("no such item found")
         return found_idx
 
-if __name__ == '__main__':
-    ll = LinkedList()
-    ll.append(5)
-    ll.append(2.2)
-    ll.append(2.2)
-    ll.append(4.3)
-    ll.append(345)
-    ll.append(1)
-    freq = ll.count(2.2)
-    idx = ll.index(2.2,2,3)
-
-    print("item", ll.get_item())
 
 
