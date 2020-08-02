@@ -34,9 +34,37 @@ class TestLinkedList(unittest.TestCase):
         ll = LinkedList()
         ll = self.insert_data(data, ll)
 
-        delete_indices = [3, 2, 4]
+        delete_indices = [0, 0, 4, 3]
         for i in delete_indices:
             ll.deleteAt(i)
+            del data[i]
+
+        self.assertEqual(len(data), ll.size)
+        self.assert_linked_list(data, ll)
+
+    def test_delete_first(self):
+
+        data = [0, 1, 2, 3, 4]
+        ll = LinkedList()
+        ll = self.insert_data(data, ll)
+
+        delete_indices = len(data)*[0]
+        for i in delete_indices:
+            ll.delete_first()
+            del data[i]
+
+        self.assertEqual(len(data), ll.size)
+        self.assert_linked_list(data, ll)
+
+    def test_delete_last(self):
+
+        data = [0, 1, 2, 3, 4]
+        ll = LinkedList()
+        ll = self.insert_data(data, ll)
+
+        delete_indices = np.arange(len(data)-1, 0, -1)
+        for i in delete_indices:
+            ll.delete_last()
             del data[i]
 
         self.assertEqual(len(data), ll.size)
@@ -46,7 +74,7 @@ class TestLinkedList(unittest.TestCase):
         ll = LinkedList()
         data = [0, 1, 2, -3, 10, 23]
         ll = self.insert_data(data, ll)
-        pop_indices = [5, 3, 2]
+        pop_indices = [5, 4, 0]
         pop_items = []
         for i in pop_indices:
             pop_items.append(data[i])
@@ -84,7 +112,6 @@ class TestLinkedList(unittest.TestCase):
 
         freq = 5
         data = freq*[2]
-        print(data)
 
         ll = self.insert_data(data, ll)
         self.assertEqual(freq, ll.count(2))

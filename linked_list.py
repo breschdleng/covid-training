@@ -49,37 +49,55 @@ class LinkedList:
         for i in range(self.size):
             self.deleteAt(0)
 
-    def deleteAt(self, idx):
-        node = self.head
-
-        if idx is None:
-            raise ValueError("enter a valid idx")
-
-        if idx < 0 or idx > self.size-1:
-            raise ValueError("given index does not match with the list size")
-
-        for i in range(idx-1):
-            node = node.next
-
-        if idx == 0 and self.size > 0:
-            temp = self.head
-            self.head = node.next
-        elif idx == 0 and self.size == 1:
+    def delete_first(self):
+        if self.size == 1:
             temp = self.head
             self.head = None
-        elif idx == self.size-1:
-            temp = node.next
-            node.next = None
         else:
-            temp = node.next
-            node.next = node.next.next
-
+            node = self.head
+            temp = self.head
+            self.head = node.next
         self.size -=1
+        return temp
+
+    def delete_last(self):
+        node = self.head
+        for i in range(self.size - 2):
+            node = node.next
+
+        temp = node.next
+        node.next = None
+        self.size -= 1
+        return temp
+
+    def delete_between(self, idx):
+        node = self.head
+        for i in range(idx -1):
+            node = node.next
+
+        temp = node.next
+        node.next = node.next.next
+        self.size -= 1
+        return temp
+
+    def deleteAt(self, idx):
+
+        if idx < 0 or idx > self.size-1 or idx is None:
+            raise ValueError("invalid index")
+
+        if idx == 0:
+            temp = self.delete_first()
+        elif idx == self.size-1:
+            temp = self.delete_last()
+        else:
+            temp = self.delete_between(idx)
+
         return temp
 
     def pop(self, idx=None):
         if idx is None:
             idx = self.size-1
+
         item = self.deleteAt(idx)
         return item
 
