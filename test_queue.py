@@ -28,7 +28,7 @@ class TestQueue(unittest.TestCase):
 
         a = a[::-1]
         for i in range(len(a)):
-            self.assertEqual(a[i], qq.dequeue())
+            self.assertEqual(a[i], qq.dequeue().data)
             self.assertEqual(len(a[i+1:]), qq.size)
 
 

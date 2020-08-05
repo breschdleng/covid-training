@@ -1,4 +1,27 @@
 from linked_list import Node
+from linked_list import LinkedList
+
+# Generic Queue
+class GenQueue:
+    def __init__(self):
+        self.list = []
+        self.size = 0
+
+    def enqueue(self, node):
+        self.list.append(node)
+        self.size = len(self.list)
+
+    def dequeue(self):
+        val = self.list[0]
+        del self.list[0]
+        self.size -=1
+        return val
+
+    def is_empty(self):
+        if len(self.list)==0:
+            return True
+        else:
+            return False
 
 class Queue:
     def __init__(self):
@@ -33,7 +56,7 @@ class Queue:
             if self.head.next is not None:
                 self.head = self.head.next
             self.size -=1
-            return node.data
+            return node
 
     def get_item(self, idx):
 
