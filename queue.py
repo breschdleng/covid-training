@@ -29,10 +29,11 @@ class Queue:
             raise ValueError("empty Queue")
         else:
             node = self.head
+
             if self.head.next is not None:
                 self.head = self.head.next
             self.size -=1
-            return node
+            return node.data
 
     def get_item(self, idx):
 
